@@ -1,5 +1,8 @@
 # spectacle-autoimgur
+[![CMake on a single platform](https://github.com/salihefee/spectacle-autoimgur/actions/workflows/cmake-single-platform.yml/badge.svg)](https://github.com/salihefee/spectacle-autoimgur/actions/workflows/cmake-single-platform.yml)
+
 a simple and probably horrible program i wrote for myself to automatically upload screenshots taken by spectacle to imgur and copy the link to my clipboard. I use a systemd service to launch this at boot.
+
 
 only works with wayland.
 ### usage:
