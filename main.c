@@ -247,9 +247,8 @@ int main(int argc, char *argv[]) {
 
     curl_global_init(CURL_GLOBAL_SSL);
 
-    char new_file_path[PATH_MAX];
-
     while (1) {
+        char new_file_path[PATH_MAX];
         watch_directory(directory_to_watch, new_file_path);
         printf("New file created: %s\n", new_file_path);
         sleep(1);
