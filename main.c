@@ -223,16 +223,15 @@ int main(int argc, char *argv[]) {
         if (S_ISDIR(path_stat.st_mode)) {
             fprintf(stderr, "Error: Only one argument provided and it is a directory. Please provide a Client ID.\n");
             return EXIT_FAILURE;
+        }
+        client_id = argv[1];
+        const char *home_dir = getenv("HOME");
+        if (home_dir != NULL) {
+            snprintf(default_directory, sizeof(default_directory), "%s/Pictures/Screenshots", home_dir);
+            directory_to_watch = default_directory;
         } else {
-            client_id = argv[1];
-            const char *home_dir = getenv("HOME");
-            if (home_dir != NULL) {
-                snprintf(default_directory, sizeof(default_directory), "%s/Pictures/Screenshots", home_dir);
-                directory_to_watch = default_directory;
-            } else {
-                fprintf(stderr, "HOME environment variable is not set.\n");
-                return EXIT_FAILURE;
-            }
+            fprintf(stderr, "HOME environment variable is not set.\n");
+            return EXIT_FAILURE;
         }
     } else if (argc > 2) {
         directory_to_watch = argv[1];
