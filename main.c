@@ -134,6 +134,7 @@ char *upload_image(const char *image_path, const char *client_id) {
     return image_link;
 }
 
+// not used anymore
 char *get_image_name(const char *image_path) {
     if (image_path == NULL || image_path[0] == '\0') {
         return NULL;
