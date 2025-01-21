@@ -68,7 +68,7 @@ size_t get_response(const void *buffer, const size_t size, const size_t nmemb, v
 
     char *ptr = realloc(mem->memory, mem->size + realsize + 1);
     if (ptr == NULL) {
-        printf("Not enough memory (realloc returned NULL)\n");
+        fprintf(stderr, "Not enough memory (realloc returned NULL)\n");
         return 0;
     }
 
