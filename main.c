@@ -174,7 +174,7 @@ void watch_directory(const char *path, char *new_file_path) {
         exit(EXIT_FAILURE);
     }
 
-    const int wd = inotify_add_watch(fd, path, IN_CREATE);
+    const int wd = inotify_add_watch(fd, path, IN_CLOSE_WRITE);
     if (wd == -1) {
         fprintf(stderr, "Cannot watch '%s'\n", path);
         exit(EXIT_FAILURE);
@@ -190,7 +190,7 @@ void watch_directory(const char *path, char *new_file_path) {
         while (i < length) {
             struct inotify_event *event = (struct inotify_event *)&buffer[i];
             if (event->len) {
-                if (event->mask & IN_CREATE) {
+                if (event->mask & IN_CLOSE_WRITE) {
                     if (!(event->mask & IN_ISDIR)) {
                         const char *ext = strrchr(event->name, '.');
                         if (ext && (strcmp(ext, ".png") == 0 || strcmp(ext, ".jpg") == 0 || strcmp(ext, ".jpeg") == 0)) {
@@ -250,7 +250,7 @@ int main(int argc, char *argv[]) {
         char new_file_path[PATH_MAX];
         watch_directory(directory_to_watch, new_file_path);
         printf("New file created: %s\n", new_file_path);
-        sleep(1);
+        // sleep(1);
         char *link = upload_image(new_file_path, client_id);
         if (link) {
             printf("Uploaded: %s\n", link);
