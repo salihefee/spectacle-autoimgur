@@ -114,7 +114,7 @@ char *upload_image(const char *image_path, const char *client_id) {
         curl_easy_setopt(handle, CURLOPT_MIMEPOST, mime);
         curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, get_response);
         curl_easy_setopt(handle, CURLOPT_WRITEDATA, (void *)&chunk);
-        curl_easy_setopt(handle, CURLOPT_TIMEOUT, 30L); // Set timeout to 30 seconds
+        curl_easy_setopt(handle, CURLOPT_TIMEOUT, 10L);
         const CURLcode res = curl_easy_perform(handle);
         printf("Response code: %d\n", res);
         curl_mime_free(mime);
