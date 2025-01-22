@@ -109,7 +109,7 @@ char *upload_image(const char *image_path, const char *client_id) {
         curl_mime_name(part, "type");
         curl_mime_data(part, "image", CURL_ZERO_TERMINATED);
         part = curl_mime_addpart(mime);
-        // curl_mime_name(part, "title");
+        // curl_mime_name(part, "title"); // setting the image title causes the image to become an embed instead of an image on discord
         // curl_mime_data(part, image_name, CURL_ZERO_TERMINATED);
         curl_easy_setopt(handle, CURLOPT_MIMEPOST, mime);
         curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, get_response);
